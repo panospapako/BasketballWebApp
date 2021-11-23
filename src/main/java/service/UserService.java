@@ -6,7 +6,7 @@
 package service;
 
 import dao.UserDao;
-import entities.User;
+import entity.User;
 
 /**
  * @author ppapakostas
@@ -15,8 +15,8 @@ public class UserService {
 
     UserDao udao = new UserDao();
 
-    public User getUserByUserName(String uN) {
-        User u = udao.findByUserName(uN);
+    public User getUserByUserName(String username) {
+        User u = udao.findByUserName(username);
         return u;
     }
 
