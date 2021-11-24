@@ -1,4 +1,4 @@
-package daoJPA;
+package dao;
 
 /**
  *
@@ -65,6 +65,7 @@ public class HibernateUtil<T> {
     protected List<T> findAll(String query) {
         getEntityManager();
         List<T> list = em.createQuery(query).getResultList();
+        System.out.println(list);
         closeEntityManager();
         return list;
     }
