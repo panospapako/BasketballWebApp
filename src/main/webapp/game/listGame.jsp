@@ -28,8 +28,8 @@
         <c:forEach items="${gameList}" var="game">
             <tr>
                 <td>${game.gameId}</td>
-                <td>${game.stadId}</td>
-                <td>${game.gDate}</td>
+                <td>${game.stadium.sName}</td>
+                <td>${game.gameDate}</td>
                 <td>${game.oppTeam}</td>
                 <td>${game.oppScore}</td>
                 <td>${game.myScore}</td>

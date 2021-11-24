@@ -5,7 +5,7 @@
  */
 package servlet.game;
 
-import entities.Stadium;
+import entity.Stadium;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -39,13 +39,7 @@ public class CreateGameServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         GameService service = new GameService();
-        int stadId = Integer.parseInt(request.getParameter("stadium"));
-        System.out.println("stadium " + stadId);
-        LocalDate gDate = LocalDate.parse(request.getParameter("gDate"));
-        String oppTeam = request.getParameter("oppTeam");
-        int oppScore = Integer.parseInt(request.getParameter("oppScore"));
-        int myScore = Integer.parseInt(request.getParameter("myScore"));
-        service.create(stadId, gDate, oppTeam, oppScore, myScore);
+        service.create(request.getParameterMap());
         request.setAttribute("message", "Game created successfully");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/listGame");
         dispatcher.forward(request, response);

@@ -5,6 +5,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Game.findAll", query = "SELECT g FROM Game g"),//JPQL
         @NamedQuery(name = "Game.findByGameId", query = "SELECT g FROM Game g WHERE g.gameId = :gameId"),
-        @NamedQuery(name = "Game.findByGDate", query = "SELECT g FROM Game g WHERE g.gDate = :gDate"),
+        @NamedQuery(name = "Game.findByGDate", query = "SELECT g FROM Game g WHERE g.gameDate = :gDate"),
         @NamedQuery(name = "Game.findByOppTeam", query = "SELECT g FROM Game g WHERE g.oppTeam = :oppTeam"),
         @NamedQuery(name = "Game.findByOppScore", query = "SELECT g FROM Game g WHERE g.oppScore = :oppScore"),
         @NamedQuery(name = "Game.findByMyScore", query = "SELECT g FROM Game g WHERE g.myScore = :myScore")})
@@ -32,8 +33,7 @@ public class Game implements Serializable {
     @Column(name = "gameId")
     private Integer gameId;
     @Column(name = "gDate")
-    @Temporal(TemporalType.DATE)
-    private Date gDate;
+    private LocalDate gameDate;
     @Size(max = 60)
     @Column(name = "oppTeam")
     private String oppTeam;
@@ -43,11 +43,20 @@ public class Game implements Serializable {
     private Integer myScore;
     @JoinColumn(name = "stadId", referencedColumnName = "stadId")
     @ManyToOne(optional = false)
-    private Stadium stadId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "gameId", fetch = FetchType.LAZY)
+    private Stadium stadium;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "game", fetch = FetchType.LAZY)
     private List<PlayerGame> playerGameList;
 
     public Game() {
+    }
+
+    public Game(LocalDate gDate, String oppTeam, Integer oppScore, Integer myScore, Stadium stadium) {
+
+        this.gameDate = gDate;
+        this.oppTeam = oppTeam;
+        this.oppScore = oppScore;
+        this.myScore = myScore;
+        this.stadium = stadium;
     }
 
     public Game(Integer gameId) {
@@ -62,12 +71,12 @@ public class Game implements Serializable {
         this.gameId = gameId;
     }
 
-    public Date getGDate() {
-        return gDate;
+    public LocalDate getGameDate() {
+        return gameDate;
     }
 
-    public void setGDate(Date gDate) {
-        this.gDate = gDate;
+    public void setGameDate(LocalDate gameDate) {
+        this.gameDate = gameDate;
     }
 
     public String getOppTeam() {
@@ -94,12 +103,12 @@ public class Game implements Serializable {
         this.myScore = myScore;
     }
 
-    public Stadium getStadId() {
-        return stadId;
+    public Stadium getStadium() {
+        return stadium;
     }
 
-    public void setStadId(Stadium stadId) {
-        this.stadId = stadId;
+    public void setStadium(Stadium stadium) {
+        this.stadium = stadium;
     }
 
     @XmlTransient

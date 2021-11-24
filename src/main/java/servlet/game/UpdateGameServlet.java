@@ -5,8 +5,8 @@
  */
 package servlet.game;
 
-import entities.Game;
-import entities.Training;
+import entity.Game;
+import entity.Training;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -42,13 +42,7 @@ public class UpdateGameServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         GameService service = new GameService();
-        int gameId = Integer.parseInt(request.getParameter("gameId"));
-        int stadId = Integer.parseInt(request.getParameter("stadId"));
-        LocalDate gDate = LocalDate.parse(request.getParameter("gDate"));
-        String oppTeam = request.getParameter("oppTeam");
-        int oppScore = Integer.parseInt(request.getParameter("oppScore"));
-        int myScore = Integer.parseInt(request.getParameter("myScore"));
-        service.update(gameId, stadId, gDate, oppTeam, oppScore, myScore);
+        service.create(request.getParameterMap());
         request.setAttribute("message", "Game updated successfully");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/listGame");
         dispatcher.forward(request, response);

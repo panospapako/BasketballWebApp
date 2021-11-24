@@ -5,7 +5,7 @@
  */
 package servlet.game;
 
-import entities.Game;
+import entity.Game;
 
 import java.io.IOException;
 import java.util.List;

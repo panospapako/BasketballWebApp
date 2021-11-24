@@ -41,7 +41,7 @@
         </c:forEach>
     </select>
 
-        Date : <input type="date" name="gDate" value="${game.gDate}"><br/>
+        Date : <input type="date" name="gameDate" value="${game.gameDate}"><br/>
         OppTeam : <input type="text" name="oppTeam" value="${game.oppTeam}"><br/>
         OppScore : <input type="number" name="oppScore" value="${game.oppScore}"><br/>
         MyScore : <input type="number" name="myScore" value="${game.myScore}"><br/>
