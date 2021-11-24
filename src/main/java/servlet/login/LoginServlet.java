@@ -5,7 +5,7 @@
  */
 package servlet.login;
 
-import entities.User;
+import entity.User;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -26,6 +26,7 @@ import service.UserService;
                 @WebInitParam(name = "username", value = "Invalid"),
                 @WebInitParam(name = "password", value = "Too short")
         })
+
 public class LoginServlet extends HttpServlet {
 
     @Override
@@ -41,8 +42,8 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         UserService service = new UserService();
-        User u = service.getUserByUserName(username);
-        if (u == null) {
+        User user = service.getUserByUserName(username);
+        if (user == null) {
             String message = "The user does not exist!";
             request.setAttribute("message", message);
             request.setAttribute("username", getInitParameter("username"));
@@ -50,10 +51,10 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.include(request, response);
         } else {
-            boolean isLogin = (username.equals(u.getUserName())) && (password.equals(u.getPassword()));
+            boolean isLogin = (username.equals(user.getUsername())) && (password.equals(user.getPassword()));
             if (isLogin) {
                 request.getSession().setAttribute("username", username);
-                request.getSession().setAttribute("role", u.getRole());
+                request.getSession().setAttribute("role", user.getRole());
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/");
                 dispatcher.forward(request, response);
             } else {
