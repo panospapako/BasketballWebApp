@@ -46,7 +46,7 @@ public class Stadium implements Serializable {
     private String location;
     @Column(name = "capacity")
     private Integer capacity;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stadId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stadium")
     private List<Game> gameList;
 
     public Stadium() {
@@ -77,11 +77,11 @@ public class Stadium implements Serializable {
         this.stadId = stadId;
     }
 
-    public String getSName() {
+    public String getsName() {
         return sName;
     }
 
-    public void setSName(String sName) {
+    public void setsName(String sName) {
         this.sName = sName;
     }
 
@@ -132,7 +132,7 @@ public class Stadium implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Stadium[ stadId=" + stadId + sName+"  ]";
+        return "entity.Stadium[ stadId=" + stadId +"  ]";
     }
 
 }

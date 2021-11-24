@@ -5,7 +5,7 @@
  */
 package service;
 
-import daoJPA.StadiumDao;
+import dao.StadiumDao;
 import entity.Stadium;
 
 import java.util.List;
@@ -22,14 +22,14 @@ public class StadiumService {
     }
 
     public Stadium getStadiumById(int stadId) {
-        Stadium s = sdao.find(stadId);
-        return s;
+        Stadium stadium = sdao.find(stadId);
+        return stadium;
     }
 
     public Stadium create(String sName, String location, Integer capacity) {
-        Stadium s = new Stadium(sName, location, capacity);
-        s = sdao.save(s);
-        return s;
+        Stadium stadium = new Stadium(sName, location, capacity);
+        stadium = sdao.save(stadium);
+        return stadium;
     }
 
     public boolean delete(int id) {
@@ -38,9 +38,9 @@ public class StadiumService {
     }
 
     public Stadium update(int stadId, String sName, String location, int capacity) {
-        Stadium s = new Stadium(stadId, sName, location, capacity);
-        s = sdao.update(s);
-        return s;
+        Stadium stadium = new Stadium(stadId, sName, location, capacity);
+        stadium = sdao.update(stadium);
+        return stadium;
     }
 
 
