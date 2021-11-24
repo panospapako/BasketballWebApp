@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 
+
 public class UserDao extends HibernateUtil<User>{
 
     public User findByUserName(String username) {
