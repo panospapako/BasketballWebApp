@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -37,8 +38,7 @@ public class Coach implements Serializable {
     @Column(name = "fName")
     private String fName;
     @Column(name = "dateOfBirth")
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     @Size(max = 20)
     @Column(name = "phoneNumber")
     private String phoneNumber;
@@ -93,11 +93,11 @@ public class Coach implements Serializable {
         this.fName = fName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

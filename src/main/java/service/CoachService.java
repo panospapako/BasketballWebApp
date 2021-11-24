@@ -5,7 +5,7 @@
  */
 package service;
 
-import daoJPA.CoachDao;
+import dao.CoachDao;
 import entity.Coach;
 
 import java.util.List;
@@ -21,14 +21,14 @@ public class CoachService {
     }
 
     public Coach getCoachById(int idNumber) {
-        Coach c = cdao.find(idNumber);
-        return c;
+        Coach coach = cdao.find(idNumber);
+        return coach;
     }
 
     public Coach create(String lName, String fName) {
-        Coach c = new Coach(lName, fName);
-        c = cdao.save(c);
-        return c;
+        Coach coach = new Coach(lName, fName);
+        coach = cdao.save(coach);
+        return coach;
     }
 
     public boolean delete(int id) {
@@ -37,8 +37,8 @@ public class CoachService {
     }
 
         public Coach update(int id, String lName, String fName) {
-        Coach c = new Coach(id, lName, fName);
-        c = cdao.update(c);
-        return c;
+        Coach coach = new Coach(id, lName, fName);
+        coach = cdao.update(coach);
+        return coach;
     }
 }
