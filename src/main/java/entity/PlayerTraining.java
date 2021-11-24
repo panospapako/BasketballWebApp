@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
         @NamedQuery(name = "PlayerTraining.findAll", query = "SELECT p FROM PlayerTraining p"),
         @NamedQuery(name = "PlayerTraining.findByPTCode", query = "SELECT p FROM PlayerTraining p WHERE p.pTCode = :pTCode"),
+        @NamedQuery(name = "PlayerTraining.findByTraining", query = "SELECT p FROM PlayerTraining p WHERE p.training= :trainId"),
         @NamedQuery(name = "PlayerTraining.findByPerformance", query = "SELECT p FROM PlayerTraining p WHERE p.performance = :performance")})
 public class PlayerTraining implements Serializable {
 
@@ -37,12 +38,18 @@ public class PlayerTraining implements Serializable {
     private Integer performance;
     @JoinColumn(name = "playerId", referencedColumnName = "idNumber")
     @ManyToOne(optional = false)
-    private Player playerId;
+    private Player player;
     @JoinColumn(name = "trainId", referencedColumnName = "trainId")
     @ManyToOne(optional = false)
-    private Training trainId;
+    private Training training;
 
     public PlayerTraining() {
+    }
+
+    public PlayerTraining(Player player, Training training, Integer performance ) {
+        this.player = player;
+        this.training = training;
+        this.performance = performance;
     }
 
     public PlayerTraining(Integer pTCode) {
@@ -65,20 +72,20 @@ public class PlayerTraining implements Serializable {
         this.performance = performance;
     }
 
-    public Player getPlayerId() {
-        return playerId;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setPlayerId(Player playerId) {
-        this.playerId = playerId;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
-    public Training getTrainId() {
-        return trainId;
+    public Training getTraining() {
+        return training;
     }
 
-    public void setTrainId(Training trainId) {
-        this.trainId = trainId;
+    public void setTraining(Training training) {
+        this.training = training;
     }
 
     @Override

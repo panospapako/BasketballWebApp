@@ -9,8 +9,8 @@ package servlet.playertraining;
  * @author ppapakostas
  */
 
-import entities.PlayerTraining;
-import entities.Training;
+import entity.PlayerTraining;
+import entity.Training;
 
 import java.io.IOException;
 import java.util.List;

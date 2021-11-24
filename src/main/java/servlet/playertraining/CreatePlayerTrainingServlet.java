@@ -9,9 +9,9 @@ package servlet.playertraining;
  * @author ppapakostas
  */
 
-import entities.Player;
-import entities.PlayerTraining;
-import entities.Training;
+import entity.Player;
+import entity.PlayerTraining;
+import entity.Training;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,10 +36,10 @@ public class CreatePlayerTrainingServlet extends HttpServlet {
         //List<Training> listOfTraining = service.listOfTraining();
         int trainId = Integer.parseInt(request.getParameter("trainId"));
         Training training = service.getTrainingById(trainId);
-        List<Player> listOfPlayerWhoNotParticipate = service.listOfPlayerWhoNotParticipate(trainId);
+//        List<Player> listOfPlayerWhoNotParticipate = service.listOfPlayerWhoNotParticipate(trainId);
         List<PlayerTraining> listOfParticipant = service.getParticipants(trainId);
 
-        request.setAttribute("listOfPlayerWhoNotParticipate", listOfPlayerWhoNotParticipate);
+//        request.setAttribute("listOfPlayerWhoNotParticipate", listOfPlayerWhoNotParticipate);
         //request.setAttribute("listOfTraining", listOfTraining);
         request.setAttribute("training", training);
 
@@ -53,7 +53,7 @@ public class CreatePlayerTrainingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PlayerTrainingService service = new PlayerTrainingService();
-        service.createPlayerTraining(request.getParameterMap());
+        service.create(request.getParameterMap());
         request.setAttribute("message", "PlayerTraining created successfully");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/listPlayerTraining");
         dispatcher.forward(request, response);

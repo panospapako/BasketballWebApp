@@ -1,17 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+///*
+// * To change this license header, choose License Headers in Project Properties.
+// * To change this template file, choose Tools | Templates
+// * and open the template in the editor.
+// */
 package service;
 
 import dao.PlayerDao;
 import dao.PlayerTrainingDao;
+import dao.StadiumDao;
 import dao.TrainingDao;
-import entities.Player;
-import entities.PlayerTraining;
-import entities.Training;
+import entity.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -41,11 +41,6 @@ public class PlayerTrainingService {
         return pdao.findAll();
     }
 
-    public List<Player> listOfPlayerWhoNotParticipate(int trainId) {
-        PlayerDao pdao = new PlayerDao();
-        return pdao.findPlayerWhoNotParticipate(trainId);
-    }
-
     public List<Training> listOfTraining() {
         TrainingDao tdao = new TrainingDao();
         return tdao.findAll();
@@ -53,18 +48,22 @@ public class PlayerTrainingService {
 
     public Training getTrainingById(int trainId) {
         TrainingDao tdao = new TrainingDao();
-        Training t = tdao.findById(trainId);
+        Training t = tdao.find(trainId);
         return t;
     }
 
-    public boolean createPlayerTraining(Map<String, String[]> parameterMap) {
-        int player = Integer.parseInt(parameterMap.get("player")[0]);
-        int training = Integer.parseInt(parameterMap.get("training")[0]);
+    public PlayerTraining create(Map<String, String[]> parameterMap) {
+        int idNumber = Integer.parseInt(parameterMap.get("idNumber")[0]);
+        PlayerDao playerDao = new PlayerDao();
+        Player player = playerDao.find(idNumber);
+        int trainId = Integer.parseInt(parameterMap.get("trainId")[0]);
+        TrainingDao trainingDao = new TrainingDao();
+        Training training = trainingDao.find(trainId);
         int performance = Integer.parseInt(parameterMap.get("performance")[0]);
-        System.out.println(player);
-        System.out.println(training);
-        System.out.println(performance);
-        boolean result = ptdao.create(player, training, performance);
-        return result;
+        PlayerTraining playerTraining = new PlayerTraining(player, training, performance);
+        playerTraining = ptdao.save(playerTraining);
+        return playerTraining;
     }
+
+
 }
