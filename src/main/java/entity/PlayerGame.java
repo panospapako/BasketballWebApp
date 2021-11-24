@@ -42,10 +42,10 @@ public class PlayerGame implements Serializable {
     private String prize;
     @JoinColumn(name = "gameId", referencedColumnName = "gameId")
     @ManyToOne(optional = false)
-    private Game gameId;
+    private Game game;
     @JoinColumn(name = "playerId", referencedColumnName = "idNumber")
     @ManyToOne(optional = false)
-    private Player playerId;
+    private Player player;
 
     public PlayerGame() {
     }
@@ -78,20 +78,20 @@ public class PlayerGame implements Serializable {
         this.prize = prize;
     }
 
-    public Game getGameId() {
-        return gameId;
+    public Game getGame() {
+        return game;
     }
 
-    public void setGameId(Game gameId) {
-        this.gameId = gameId;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
-    public Player getPlayerId() {
-        return playerId;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setPlayerId(Player playerId) {
-        this.playerId = playerId;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     @Override
