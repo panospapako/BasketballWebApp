@@ -87,12 +87,7 @@ public class UpdatePlayerServlet extends HttpServlet {
         PlayerService service = new PlayerService();
         String lName = request.getParameter("lName");
         String fName = request.getParameter("fName");
-        Date dateOfBirth = null;
-        try {
-            dateOfBirth = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dateOfBirth"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        LocalDate dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"));
         Integer weight = Integer.parseInt(request.getParameter("weight"));
         Integer height = Integer.parseInt(request.getParameter("height"));
         int id = Integer.parseInt(request.getParameter("id"));

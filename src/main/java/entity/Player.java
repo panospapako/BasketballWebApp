@@ -1,7 +1,8 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -14,8 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -51,15 +51,14 @@ public class Player implements Serializable {
     @Column(name = "fName")
     private String fName;
     @Column(name = "dateOfBirth")
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     @Column(name = "weight")
     private Integer weight;
     @Column(name = "height")
     private Integer height;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "playerId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
     private List<PlayerTraining> playerTrainingList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "playerId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
     private List<PlayerGame> playerGameList;
 
     public Player() {
@@ -69,7 +68,7 @@ public class Player implements Serializable {
         this.idNumber = idNumber;
     }
 
-    public Player(String lName, String fName, Date dateOfBirth, Integer weight, Integer height) {
+    public Player(String lName, String fName, LocalDate dateOfBirth, Integer weight, Integer height) {
         this.lName = lName;
         this.fName = fName;
         this.dateOfBirth = dateOfBirth;
@@ -77,7 +76,7 @@ public class Player implements Serializable {
         this.height = height;
     }
 
-    public Player(Integer idNumber, String lName, String fName, Date dateOfBirth, Integer weight, Integer height) {
+    public Player(Integer idNumber, String lName, String fName, LocalDate dateOfBirth, Integer weight, Integer height) {
         this.idNumber = idNumber;
         this.lName = lName;
         this.fName = fName;
@@ -110,11 +109,11 @@ public class Player implements Serializable {
         this.fName = fName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

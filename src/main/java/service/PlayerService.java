@@ -5,9 +5,10 @@
  */
 package service;
 
-import daoJPA.PlayerDao;
+import dao.PlayerDao;
 import entity.Player;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class PlayerService {
         return p;
     }
 
-    public Player create(String lName, String fName, Date dateOfBirth, Integer weight, Integer height) {
+    public Player create(String lName, String fName, LocalDate dateOfBirth, Integer weight, Integer height) {
         Player p = new Player(lName, fName, dateOfBirth, weight, height);
         p = pdao.save(p);
         return p;
@@ -38,7 +39,7 @@ public class PlayerService {
         return result;
     }
 
-    public Player update(int idNumber, String lName, String fName, Date dateOfBirth, Integer weight, Integer height) {
+    public Player update(int idNumber, String lName, String fName, LocalDate dateOfBirth, Integer weight, Integer height) {
         Player p = new Player(idNumber, lName, fName, dateOfBirth, weight, height);
         p = pdao.update(p);
         return p;
