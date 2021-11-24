@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -39,15 +40,22 @@ public class Training implements Serializable {
     @Column(name = "trainId")
     private Integer trainId;
     @Column(name = "tDateTime")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date tDateTime;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "trainId")
+    private LocalDateTime tDateTime;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "training")
     private List<PlayerTraining> playerTrainingList;
 
     public Training() {
     }
 
     public Training(Integer trainId) {
+        this.trainId = trainId;
+    }
+
+    public Training(LocalDateTime tDateTime) {
+        this.tDateTime = tDateTime;
+    }
+
+    public Training(int trainId, LocalDateTime tDateTime) {
         this.trainId = trainId;
     }
 
@@ -59,11 +67,11 @@ public class Training implements Serializable {
         this.trainId = trainId;
     }
 
-    public Date getTDateTime() {
+    public LocalDateTime gettDateTime() {
         return tDateTime;
     }
 
-    public void setTDateTime(Date tDateTime) {
+    public void settDateTime(LocalDateTime tDateTime) {
         this.tDateTime = tDateTime;
     }
 

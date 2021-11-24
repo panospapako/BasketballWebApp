@@ -6,7 +6,7 @@
 package service;
 
 import dao.TrainingDao;
-import entities.Training;
+import entity.Training;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,10 +18,10 @@ public class TrainingService {
 
     TrainingDao tdao = new TrainingDao();
 
-    public boolean create(LocalDateTime tDateTime) {
-        Training t = new Training(tDateTime);
-        boolean result = tdao.create(t);
-        return result;
+    public Training create(LocalDateTime tDateTime) {
+        Training training = new Training(tDateTime);
+        training = tdao.save(training);
+        return training;
     }
 
     public List<Training> getTrainings() {
@@ -29,8 +29,8 @@ public class TrainingService {
     }
 
     public Training getTrainingById(int trainId) {
-        Training t = tdao.findById(trainId);
-        return t;
+        Training training = tdao.find(trainId);
+        return training;
     }
 
     public boolean delete(int id) {
@@ -38,10 +38,10 @@ public class TrainingService {
         return result;
     }
 
-    public boolean update(int trainId, LocalDateTime tDateTime) {
-        Training t = new Training(trainId, tDateTime);
-        boolean result = tdao.update(t);
-        return result;
+    public Training update(int trainId, LocalDateTime tDateTime) {
+        Training training = new Training(trainId, tDateTime);
+        training = tdao.update(training);
+        return training;
     }
 
 

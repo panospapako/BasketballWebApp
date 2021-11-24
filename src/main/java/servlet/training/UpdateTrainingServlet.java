@@ -5,8 +5,8 @@
  */
 package servlet.training;
 
-import entities.Stadium;
-import entities.Training;
+import entity.Stadium;
+import entity.Training;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

@@ -5,7 +5,7 @@
  */
 package servlet.training;
 
-import entities.Training;
+import entity.Training;
 
 import java.io.IOException;
 import java.util.List;
