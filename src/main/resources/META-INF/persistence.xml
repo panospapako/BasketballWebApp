@@ -5,19 +5,27 @@
              version="2.2">
     <persistence-unit name="basketballPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <class>entity.User</class>
+        <class>entity.Player</class>
+        <class>entity.Coach</class>
+        <class>entity.Training</class>
+        <class>entity.PlayerTraining</class>
+        <class>entity.Stadium</class>
+        <class>entity.Game</class>
+        <class>entity.PlayerGame</class>
+
+        <!--        <exclude-unlisted-classes>false</exclude-unlisted-classes>-->
         <properties>
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:mysql://localhost:3306/basketballApp?serverTimezone=UTC"/>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value="1234"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/basketballApp"/>
-            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-            <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
+<!--            <property name="packagesToScan" value="" />-->
+<!--            <property name="hibernate.hbm2ddl.auto" value="update"/>-->
         </properties>
     </persistence-unit>
 </persistence>
